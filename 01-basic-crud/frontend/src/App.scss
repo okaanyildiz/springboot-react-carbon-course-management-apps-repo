@@ -1,0 +1,16 @@
+@use '@carbon/layout';
+
+.banner {
+    margin: layout.$spacing-06;
+    text-align: center;
+}
+
+.header {
+    margin-top: layout.$spacing-10;
+    margin-bottom: layout.$spacing-06;
+    text-align: center;
+}
+
+.btn-submit {
+    margin-bottom: layout.$spacing-06;
+}
