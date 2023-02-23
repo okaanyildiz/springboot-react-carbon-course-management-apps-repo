@@ -2,6 +2,7 @@ import './App.scss';
 import { Grid, Column } from '@carbon/react';
 import { Form, Stack, TextInput, Select, SelectItem, Button } from '@carbon/react';
 import AppHeader from './components/AppHeader';
+import CourseTable from './components/CourseTable';
 
 function App() {
   return (
@@ -62,6 +63,8 @@ function App() {
           </Form>
         </Column>
       </Grid>
+
+      <CourseTable />
     </div>
   );
 }
