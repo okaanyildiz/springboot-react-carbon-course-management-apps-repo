@@ -1,16 +1,16 @@
 @use '@carbon/layout';
 
-.banner {
-    margin: layout.$spacing-06;
-    text-align: center;
-}
-
-.header {
-    margin-top: layout.$spacing-10;
-    margin-bottom: layout.$spacing-06;
+.form-header {
+    margin-top: layout.$spacing-12;
+    margin-bottom: layout.$spacing-08;
+    font-size: 2rem;
     text-align: center;
 }
 
 .btn-submit {
-    margin-bottom: layout.$spacing-06;
+    margin-left: 42rem;
+}
+
+.data-table {
+    margin-top: layout.$spacing-08;
 }

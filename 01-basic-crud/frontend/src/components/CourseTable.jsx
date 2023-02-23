@@ -5,25 +5,25 @@ function CourseTable({ courses }) {
 
     const headerData = [
         {
-            header: 'Name',
             key: 'name',
+            header: 'Name',
         },
         {
-            header: 'Teacher',
-            key: 'teacher',
+            key: 'lecturer',
+            header: 'Lecturer',
         },
         {
-            header: 'Place',
             key: 'place',
+            header: 'Place',
         },
     ];
 
     return (
-        <Grid className="courseTable" fullWidth>
-            <Column lg={{ span: 14, offset: 1 }} md={8} sm={4} className="save-course">
+        <Grid className='data-table'>
+            <Column lg={{ span: 14, offset: 1 }} md={6} sm={4}>
                 <DataTable rows={courses} headers={headerData}>
                     {({ rows, headers, getHeaderProps, getTableProps }) => (
-                        <TableContainer title="DataTable">
+                        <TableContainer title="Courses">
                             <Table {...getTableProps()}>
                                 <TableHead>
                                     <TableRow>
@@ -52,4 +52,5 @@ function CourseTable({ courses }) {
     )
 }
 
-export default CourseTable
+export default CourseTable;
+

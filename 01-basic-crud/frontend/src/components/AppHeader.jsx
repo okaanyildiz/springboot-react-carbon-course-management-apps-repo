@@ -1,62 +1,50 @@
+import { Search, Notification, Switcher } from "@carbon/icons-react";
 import {
     Header,
-    HeaderContainer,
     HeaderName,
-    HeaderMenuButton,
-    HeaderMenuItem,
-    HeaderGlobalBar,
     HeaderGlobalAction,
-    SkipToContent,
-    SideNav,
-    SideNavItems,
-    HeaderSideNavItems,
-} from '@carbon/react';
-import { Switcher, Notification, UserAvatar } from '@carbon/react/icons';
+    HeaderGlobalBar,
+    HeaderNavigation,
+    HeaderMenu,
+    HeaderMenuItem,
+    Theme
+} from "@carbon/react";
 
-const AppHeader = () => (
-    <HeaderContainer
-        render={({ isSideNavExpanded, onClickSideNavExpand }) => (
-            <Header aria-label="Carbon Tutorial">
-                <SkipToContent />
-                <HeaderMenuButton
-                    aria-label="Open menu"
-                    onClick={onClickSideNavExpand}
-                    isActive={isSideNavExpanded}
-                />
-                <HeaderName prefix="OZI">
-                    COURSES APP
-                </HeaderName>
+import React from 'react'
 
-                <SideNav
-                    aria-label="Side navigation"
-                    expanded={isSideNavExpanded}
-                    isPersistent={false}>
-                    <SideNavItems>
-                        <HeaderSideNavItems>
-                            <HeaderMenuItem>
-                                Repositories
-                            </HeaderMenuItem>
-                        </HeaderSideNavItems>
-                    </SideNavItems>
-                </SideNav>
-                <HeaderGlobalBar>
-                    <HeaderGlobalAction
-                        aria-label="Notifications"
-                        tooltipAlignment="center">
-                        <Notification size={20} />
-                    </HeaderGlobalAction>
-                    <HeaderGlobalAction
-                        aria-label="User Avatar"
-                        tooltipAlignment="center">
-                        <UserAvatar size={20} />
-                    </HeaderGlobalAction>
-                    <HeaderGlobalAction aria-label="App Switcher" tooltipAlignment="end">
-                        <Switcher size={20} />
-                    </HeaderGlobalAction>
-                </HeaderGlobalBar>
-            </Header>
-        )}
-    />
-);
+function AppHeader() {
+    return (
+        <div className="container">
+            <Theme theme="g100">
+                <Header aria-label="IBM Platform Name">
+                    <HeaderName href="#" prefix="OZI">
+                        Courses App
+                    </HeaderName>
+                    <HeaderNavigation aria-label="IBM [Platform]">
+                        <HeaderMenuItem href="#">Link 1</HeaderMenuItem>
+                        <HeaderMenuItem href="#">Link 2</HeaderMenuItem>
+                        <HeaderMenuItem href="#">Link 3</HeaderMenuItem>
+                        <HeaderMenu aria-label="Link 4" menuLinkName="Link 4">
+                            <HeaderMenuItem href="#">Sub-link 1</HeaderMenuItem>
+                            <HeaderMenuItem href="#">Sub-link 2</HeaderMenuItem>
+                            <HeaderMenuItem href="#">Sub-link 3</HeaderMenuItem>
+                        </HeaderMenu>
+                    </HeaderNavigation>
+                    <HeaderGlobalBar>
+                        <HeaderGlobalAction aria-label="Search" onClick={() => { }}>
+                            <Search />
+                        </HeaderGlobalAction>
+                        <HeaderGlobalAction aria-label="Notifications" onClick={() => { }}>
+                            <Notification />
+                        </HeaderGlobalAction>
+                        <HeaderGlobalAction aria-label="App Switcher" onClick={() => { }}>
+                            <Switcher />
+                        </HeaderGlobalAction>
+                    </HeaderGlobalBar>
+                </Header>
+            </Theme>
+        </div>
+    )
+}
 
-export default AppHeader;
+export default AppHeader
