@@ -1,0 +1,12 @@
+@use '@carbon/layout';
+
+.form-header {
+    margin-top: layout.$spacing-12;
+    margin-bottom: layout.$spacing-08;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.btn-submit {
+    margin-left: 42rem;
+}

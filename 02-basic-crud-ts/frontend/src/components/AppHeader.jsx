@@ -1,4 +1,3 @@
-import { render } from "react-dom";
 import { Search, Notification, Switcher } from "@carbon/icons-react";
 import {
     Header,
