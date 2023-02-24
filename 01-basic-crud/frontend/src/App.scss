@@ -1,5 +1,10 @@
 @use '@carbon/layout';
 
+html {
+    box-sizing: border-box;
+    font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
 .form-header {
     margin-top: layout.$spacing-12;
     margin-bottom: layout.$spacing-08;
@@ -11,6 +16,30 @@
     margin-left: 42rem;
 }
 
-.data-table {
+.table-header {
+    background-color: rgb(244, 244, 244);
     margin-top: layout.$spacing-08;
+    padding: layout.$spacing-04;
+}
+
+.table {
+    width: 100%;
+}
+
+.table-headers {
+    background-color: rgb(224, 224, 224);
+    font-weight: bold;
+    height: 3rem;
+}
+
+
+.table-rows {
+    background-color: rgb(244, 244, 244);
+    border-bottom: 1px solid rgb(224, 224, 224);
+    height: 3rem;
+}
+
+.table-headers td,
+.table-rows td {
+    padding: .9rem;
 }

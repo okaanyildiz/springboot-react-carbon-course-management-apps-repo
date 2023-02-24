@@ -4,6 +4,7 @@ import { Grid, Column } from '@carbon/react';
 import { Form, Stack, TextInput, Select, SelectItem, Button } from '@carbon/react';
 import AppHeader from './components/AppHeader';
 import CourseTable from './components/CourseTable';
+import { nanoid } from 'nanoid'
 
 function App() {
 
@@ -15,10 +16,12 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setCourses((prev) => [...prev, {
+      id: nanoid(),
       name: course,
       lecturer: lecturer,
       place: place
     }])
+    console.log(courses.name);
     setCourse("");
     setLecturer("");
     setPlace("");
@@ -89,7 +92,7 @@ function App() {
         </Column>
       </Grid>
 
-      <CourseTable courses={courses}/>
+      <CourseTable courses={courses} />
     </div>
   );
 }

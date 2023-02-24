@@ -1,52 +1,40 @@
 import { DataTable, TableContainer, Table, TableHead, TableRow, TableHeader, TableBody, TableCell } from '@carbon/react';
 import { Grid, Column } from '@carbon/react';
+import { Edit, TrashCan } from '@carbon/icons-react';
+import { nanoid } from 'nanoid'
 
 function CourseTable({ courses }) {
 
-    const headerData = [
-        {
-            key: 'name',
-            header: 'Name',
-        },
-        {
-            key: 'lecturer',
-            header: 'Lecturer',
-        },
-        {
-            key: 'place',
-            header: 'Place',
-        },
-    ];
-
     return (
-        <Grid className='data-table'>
+        <Grid>
             <Column lg={{ span: 14, offset: 1 }} md={6} sm={4}>
-                <DataTable rows={courses} headers={headerData}>
-                    {({ rows, headers, getHeaderProps, getTableProps }) => (
-                        <TableContainer title="Courses">
-                            <Table {...getTableProps()}>
-                                <TableHead>
-                                    <TableRow>
-                                        {headers.map((header) => (
-                                            <TableHeader {...getHeaderProps({ header })}>
-                                                {header.header}
-                                            </TableHeader>
-                                        ))}
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {rows.map((row) => (
-                                        <TableRow key={row.id}>
-                                            {row.cells.map((cell) => (
-                                                <TableCell key={cell.id}>{cell.value}</TableCell>
-                                            ))}
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    )}
-                </DataTable>
+
+                <h2 className='table-header'>Courses</h2>
+                <table className='table'>
+                    <tbody>
+                        <tr className='table-headers'>
+                            <td>Name</td>
+                            <td>Lecturer</td>
+                            <td>Place</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {courses.map(course =>
+                            <tr className='table-rows'>
+                                <td>{course.name}</td>
+                                <td>{course.lecturer}</td>
+                                <td>{course.place}</td>
+                                <td>
+                                    <a href=""><Edit /></a>
+                                </td>
+                                <td>
+                                    <a href=""><TrashCan /></a>
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+
             </Column>
         </Grid>
     )
