@@ -1,9 +1,7 @@
-import { DataTable, TableContainer, Table, TableHead, TableRow, TableHeader, TableBody, TableCell } from '@carbon/react';
 import { Grid, Column } from '@carbon/react';
 import { Edit, TrashCan } from '@carbon/icons-react';
-import { nanoid } from 'nanoid'
 
-function CourseTable({ courses }) {
+function CourseTable({ courses, deleteCourse }) {
 
     return (
         <Grid>
@@ -20,15 +18,15 @@ function CourseTable({ courses }) {
                             <td></td>
                         </tr>
                         {courses.map(course =>
-                            <tr className='table-rows'>
+                            <tr className='table-rows' key={course.id}>
                                 <td>{course.name}</td>
                                 <td>{course.lecturer}</td>
                                 <td>{course.place}</td>
                                 <td>
-                                    <a href=""><Edit /></a>
+                                    <a href="#mug"><Edit /></a>
                                 </td>
                                 <td>
-                                    <a href=""><TrashCan /></a>
+                                    <a href="#mug"><TrashCan onClick={() => deleteCourse(course.id)} /></a>
                                 </td>
                             </tr>
                         )}

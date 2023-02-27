@@ -8,10 +8,25 @@ import { nanoid } from 'nanoid'
 
 function App() {
 
+  const fakeData = [
+    {
+      id: nanoid(),
+      name: "Biology",
+      lecturer: "Brent Hinds",
+      place: "z11"
+    },
+    {
+      id: nanoid(),
+      name: "Fundamentals of SE",
+      lecturer: "Yamouri Moods",
+      place: "b56"
+    }
+  ]
+
   const [course, setCourse] = useState("");
   const [place, setPlace] = useState("");
   const [lecturer, setLecturer] = useState("");
-  const [courses, setCourses] = useState([]);
+  const [courses, setCourses] = useState(fakeData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,10 +36,15 @@ function App() {
       lecturer: lecturer,
       place: place
     }])
-    console.log(courses.name);
     setCourse("");
     setLecturer("");
     setPlace("");
+  }
+
+  const deleteCourse = (courseId) => {
+    console.log(courseId);
+    const remainingCourses = courses.filter(course => course.id !== courseId);
+    setCourses(remainingCourses);
   }
 
   return (
@@ -92,7 +112,7 @@ function App() {
         </Column>
       </Grid>
 
-      <CourseTable courses={courses} />
+      <CourseTable courses={courses} deleteCourse={deleteCourse} />
     </div>
   );
 }
