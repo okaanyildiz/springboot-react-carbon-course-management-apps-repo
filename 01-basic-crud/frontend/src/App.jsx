@@ -2,47 +2,67 @@ import './App.scss';
 import { useState } from 'react';
 import { Grid, Column } from '@carbon/react';
 import { Form, Stack, TextInput, Select, SelectItem, Button } from '@carbon/react';
+import mockData from './mock-data.json';
 import AppHeader from './components/AppHeader';
 import CourseTable from './components/CourseTable';
 import { nanoid } from 'nanoid'
 
 function App() {
 
-  const fakeData = [
-    {
-      id: nanoid(),
-      name: "Biology",
-      lecturer: "Brent Hinds",
-      place: "z11"
-    },
-    {
-      id: nanoid(),
-      name: "Fundamentals of SE",
-      lecturer: "Yamouri Moods",
-      place: "b56"
-    }
-  ]
-
-  const [course, setCourse] = useState("");
+  const [courses, setCourses] = useState(mockData);
+  const [courseName, setCourseName] = useState("");
   const [place, setPlace] = useState("");
   const [lecturer, setLecturer] = useState("");
-  const [courses, setCourses] = useState(fakeData);
+  const [editedCourseId, setEditedCourseId] = useState(null)
 
-  const handleSubmit = (e) => {
+  const submitNewForm = (e) => {
     e.preventDefault();
-    setCourses((prev) => [...prev, {
+
+    const newCourse = {
       id: nanoid(),
-      name: course,
+      courseName: courseName,
       lecturer: lecturer,
       place: place
-    }])
-    setCourse("");
-    setLecturer("");
-    setPlace("");
+    }
+
+    setCourses([...courses, newCourse]);
+
+    setCourseName("");
+    setPlace("")
+    setLecturer("")
+  }
+
+  const submitEditedForm = (e) => {
+    e.preventDefault();
+
+    const editedCourse = {
+      id: editedCourseId,
+      courseName: courseName,
+      lecturer: lecturer,
+      place: place
+    }
+
+    const newCourses = [...courses]
+    const courseIndex = courses.findIndex(course => course.id === editedCourseId);
+
+    newCourses[courseIndex] = editedCourse;
+
+    setCourses(newCourses);
+
+    setCourseName("");
+    setPlace("")
+    setLecturer("")
+    setEditedCourseId(null);
+  }
+
+  const cancelEdit = () => {
+    setCourseName("");
+    setPlace("")
+    setLecturer("")
+    setEditedCourseId(null);
   }
 
   const deleteCourse = (courseId) => {
-    console.log(courseId);
     const remainingCourses = courses.filter(course => course.id !== courseId);
     setCourses(remainingCourses);
   }
@@ -55,30 +75,32 @@ function App() {
 
       <Grid>
         <Column lg={{ span: 5, offset: 3 }} md={6} sm={4}>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={submitNewForm}>
             <Stack gap={6}>
               <TextInput
                 id="test2"
                 invalidText="Invalid error message."
                 labelText="Course Name"
                 placeholder="Maths, Sociology..."
-                value={course}
-                onChange={(e) => setCourse(e.target.value)}
+                name="courseName"
+                value={courseName}
+                onChange={(e) => setCourseName(e.target.value)}
               />
               <TextInput
                 id="test2"
                 invalidText="Invalid error message."
                 labelText="Course Place"
                 placeholder="b34, z22, f43..."
+                name="place"
                 value={place}
                 onChange={(e) => setPlace(e.target.value)}
               />
-
               <Select
                 defaultValue="placeholder-item"
                 id="select-1"
                 invalidText="This is an invalid error message."
                 labelText="Course Lecturer"
+                name="lecturer"
                 value={lecturer}
                 onChange={(e) => setLecturer(e.target.value)}
               >
@@ -112,7 +134,20 @@ function App() {
         </Column>
       </Grid>
 
-      <CourseTable courses={courses} deleteCourse={deleteCourse} />
+      <CourseTable
+        courses={courses}
+        deleteCourse={deleteCourse}
+        submitEditedForm={submitEditedForm}
+        courseName={courseName}
+        setCourseName={setCourseName}
+        place={place}
+        setPlace={setPlace}
+        lecturer={lecturer}
+        setLecturer={setLecturer}
+        editedCourseId={editedCourseId}
+        setEditedCourseId={setEditedCourseId}
+        cancelEdit={cancelEdit}
+      />
     </div>
   );
 }

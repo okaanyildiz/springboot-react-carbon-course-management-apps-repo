@@ -1,0 +1,14 @@
+[
+    {
+        "id": "1",
+        "courseName": "Biology",
+        "lecturer": "Brent Hinds",
+        "place": "z11"
+    },
+    {
+        "id": "2",
+        "courseName": "Fundamentals of SE",
+        "lecturer": "Yamouri Moods",
+        "place": "b56"
+    }
+]
