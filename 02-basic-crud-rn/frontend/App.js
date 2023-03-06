@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Text, Dimensions, Button, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import DataTable from './components/DataTable';
 
 const App = () => {
   const [name, setName] = useState('');
@@ -63,20 +64,10 @@ const App = () => {
           <Button title="Submit" onPress={handleSubmit} />
         </View>
 
-        {/* Table header */}
-        <View style={[styles.row, { backgroundColor: '#eee', fontWeight: 'bold', width: tableWidth }]}>
-          <Text style={[styles.cell, { flex: 2 }]}>Name</Text>
-          <Text style={[styles.cell, { flex: 2 }]}>Email</Text>
-          <Text style={[styles.cell, { flex: 1 }]}>Country</Text>
-        </View>
-        {/* Table data */}
-        {data.map((item, index) => (
-          <View key={index} style={[styles.row, { width: tableWidth }]}>
-            <Text style={[styles.cell, { flex: 2 }]}>{item.name}</Text>
-            <Text style={[styles.cell, { flex: 2 }]}>{item.email}</Text>
-            <Text style={[styles.cell, { flex: 1 }]}>{item.country}</Text>
-          </View>
-        ))}
+        <DataTable
+          tableWidth={tableWidth}
+          data={data}
+        />
 
       </View>
     </ScrollView>
@@ -110,22 +101,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 40,
   },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    padding: 20,
-    marginVertical: 10,
-    minWidth: 350,
-  },
-  cell: {
-    flex: 1,
-    fontSize: 24,
-  },
+  
 });
 
 export default App;
